@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   mlflow:
-    image: docker.pkg.github.com/andrashee/mlflow-docker/mlflow:development
+    image:  ghcr.io/andrashee/mlflow-docker/mlflow:development
     build:
       context: .
     depends_on:
