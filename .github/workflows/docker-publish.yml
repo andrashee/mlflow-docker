@@ -28,7 +28,7 @@ jobs:
         run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
       
       - name: Pull image
-        run: docker pull $IMAGE_ID:latest
+        run: docker pull $IMAGE_ID:latest || true
       
       - name: Build image
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
