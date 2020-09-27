@@ -11,7 +11,7 @@ on:
       - v*
 
 env:
-  IMAGE_ID: ghcr.io/andrashee/mlflow-docker/mlflow
+  IMAGE_ID:  docker.pkg.github.com/andrashee/mlflow-docker/mlflow
 
 jobs:
   # Push image to GitHub Packages.
@@ -29,16 +29,9 @@ jobs:
       
       - name: Pull image
         run: docker pull $IMAGE_ID:latest || true
-
-      # In this step, this action saves a list of existing images,
-      # the cache is created without them in the post run.
-      # It also restores the cache if it exists.
-      - uses: satackey/action-docker-layer-caching@v0.0.8
-        # Ignore the failure of a step and avoid terminating the job.
-        continue-on-error: true
       
       - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_ID
+        run: docker-compose build
 
       - name: Push image to GitHub Container Registry
         run: |
