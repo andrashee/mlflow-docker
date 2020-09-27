@@ -31,7 +31,7 @@ jobs:
         run: docker pull $IMAGE_ID:latest || true
       
       - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+        run: docker build . --file Dockerfile --tag $IMAGE_ID
 
       - name: Push image to GitHub Container Registry
         run: |
@@ -47,5 +47,5 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
 
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker tag $IMAGE_ID $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
